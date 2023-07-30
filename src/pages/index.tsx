@@ -1,6 +1,12 @@
+import { Button } from "mdc-ui";
 
 export default function Home() {
   return (
-   <div>Home</div>
+    <>
+      <Button
+        label="Hello World"
+        color="violet"
+      />
+    </>
   )
 }
