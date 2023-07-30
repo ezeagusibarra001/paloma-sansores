@@ -8,14 +8,20 @@ const red_hat_display = Red_Hat_Display({ subsets: ['latin'] })
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Layout className={red_hat_display.className} header={{
-      logo: "/next.svg",
-      color: "blue",
-      shade: "900"
-    }}>
+    <>
       <CssBaseline />
-      <Component {...pageProps} />
-    </Layout>
+      <Layout
+        footer={{
+          logo: "/next.svg",
+        }} className={red_hat_display.className}
+        header={{
+          logo: "/next.svg",
+          color: "blue",
+          shade: "900"
+        }}>
+        <Component {...pageProps} />
+      </Layout>
+    </>
   )
 
 }
