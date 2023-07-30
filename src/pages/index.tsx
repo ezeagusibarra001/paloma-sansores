@@ -1,11 +1,10 @@
-import { Button } from "mdc-ui";
+import { Button, Icon } from "mdc-ui";
 
 export default function Home() {
   return (
     <>
       <Button
         label="Hello World"
-        color="violet"
       />
     </>
   )
