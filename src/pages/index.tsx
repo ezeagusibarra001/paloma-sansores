@@ -1,4 +1,4 @@
-import { Button, Icon } from "mdc-ui";
+import { Button, Card, Icon } from "mdc-ui";
 
 export default function Home() {
   return (
@@ -11,6 +11,13 @@ export default function Home() {
       </div>
       <Button
         label="Hello World"
+      />
+      <Card 
+        img='https://via.placeholder.com/150'
+        title='Networker Digital: Habilidades Disruptivas'
+        price={100}
+        onClick={() => {}}
+        label='Precio lanzamiento'
       />
     </>
   )
