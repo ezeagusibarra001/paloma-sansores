@@ -2,12 +2,14 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Red_Hat_Display } from 'next/font/google'
 import { Layout } from 'mdc-ui'
+import { CssBaseline } from 'mdc-ui'
 
 const red_hat_display = Red_Hat_Display({ subsets: ['latin'] })
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
+      <CssBaseline />
       <Layout
         footer={{
           logo: "/logo.png",
