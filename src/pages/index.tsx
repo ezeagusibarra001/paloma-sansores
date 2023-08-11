@@ -19,7 +19,7 @@ export default function Home() {
       price: 100,
     },
   ]
-  console.log("cambios increibles")
+
   return (
     <>
       <section className='flex flex-col items-center justify-center h-[50vh] bg-banner bg-center bg-cover gap-2' >
