@@ -1,4 +1,4 @@
-const { getTailwindColors } = require("mdc-ui");
+import { getTailwindColors } from "./src/constants/Colors";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -15,6 +15,7 @@ module.exports = {
       backgroundImage: {
         banner: "url('/img/banner.png')",
         paloma: "url('/img/paloma.png')",
+        speaker: "url('/img/speaker.png')",
       },
     },
   },

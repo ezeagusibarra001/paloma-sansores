@@ -1,8 +1,24 @@
 import React from 'react'
 import { Button, Icon } from 'mdc-ui'
 import NoteCard from '@/components/home/NoteCard'
+import SliderPagination from '@/components/common/SliderPagination'
+import CardCourse from '@/components/home/CardCourse'
 
 export default function Home() {
+  const courses = [
+    {
+      title: 'Curso 1',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, voluptatum.',
+      image: 'speaker',
+      price: 100,
+    },
+    {
+      title: 'Curso 1',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, voluptatum.',
+      image: 'speaker',
+      price: 100,
+    },
+  ]
   return (
     <>
       <section className='flex flex-col items-center justify-center h-[50vh] bg-banner bg-center bg-cover gap-2' >
@@ -40,6 +56,14 @@ export default function Home() {
             icon={<Icon name='stars' color='violet' shade='900' />}
           />
         </div>
+      </section>
+      <section>
+        <p className='font-bold text-xl text-center my-12'>
+          Mis Cursos/Mentorías
+        </p>
+        <SliderPagination
+          items={courses.map((course) => (<CardCourse {...course} />))}
+        />
       </section>
       <section>
         <div className='h-[50vh] bg-paloma bg-cover bg-center'></div>

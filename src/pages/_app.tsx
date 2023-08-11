@@ -3,13 +3,20 @@ import type { AppProps } from 'next/app'
 import { Red_Hat_Display } from 'next/font/google'
 import { Layout } from 'mdc-ui'
 import { CssBaseline } from 'mdc-ui'
+import { getCssVariables } from '@/constants/Colors'
 
 const red_hat_display = Red_Hat_Display({ subsets: ['latin'] })
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <CssBaseline />
+      <style>
+        {`
+                :root {
+                    ${getCssVariables()}
+                }
+                `}
+      </style>
       <Layout
         header={
           {
