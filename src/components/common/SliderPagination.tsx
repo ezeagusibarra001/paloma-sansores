@@ -11,6 +11,7 @@ type SliderPaginationProps = {
 export default function SliderPagination({ items }: SliderPaginationProps) {
     return (
         <Swiper
+            className='mb-12'
             pagination={{
                 dynamicBullets: true,
             }}
