@@ -65,8 +65,22 @@ export default function Home() {
           items={courses.map((course) => (<CardCourse {...course} />))}
         />
       </section>
-      <section>
+      <section >
         <div className='h-[50vh] bg-paloma bg-cover bg-center'></div>
+        <div className='p-12 text-gray bg-gray-100 '>
+          <p className='text-xs mb-4'>Paloma Sansores, Coach Millonario</p>
+          <p className='text-xl font-bold mb-7'>La mentalidad correcta te llevará a tus resultados deseados.</p>
+          <p className='text-sm mb-4'>Soy Paloma Sansores, tengo más de 8 años de emprendimiento en negocios digitales y disfrutando de la libertad financiera. Inicié esta carrera del emprendimiento porque siempre supe como quería vivir mi vida, sabia que quería vivir mi vida bajo mis propios términos.</p>
+          <p className='text-sm'>Mi visión es impactar en la vida de muchas mujeres. Logrando que cada una de ellas viva una vida empoderada, libre y feliz, porque en definitiva, eso sucede cuando sabes lo que quieres y tienes las herramientas las herramientas necesarias para hacerlo.</p>
+          <div className='mt-6'>
+            <Button
+              label="Sobre Mi"
+              color="gray"
+              shade='300'
+              onClick={() => console.log("Sobre Mi")}
+            />
+          </div>
+        </div>
       </section>
     </>
   )
