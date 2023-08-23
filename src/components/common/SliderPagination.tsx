@@ -2,7 +2,7 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 
 type SliderPaginationProps = {
     items: React.ReactNode[];
@@ -11,11 +11,17 @@ type SliderPaginationProps = {
 export default function SliderPagination({ items }: SliderPaginationProps) {
     return (
         <Swiper
-            className='mb-12'
+            autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+            }}
             pagination={{
+                clickable: true,
                 dynamicBullets: true,
             }}
-            modules={[Pagination]}
+            className='mb-12'
+            loop
+            modules={[Autoplay, Pagination]}
         >
             {items.map((item, index) => (
                 <SwiperSlide key={index}>{item}</SwiperSlide>
