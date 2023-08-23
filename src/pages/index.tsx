@@ -21,9 +21,9 @@ export default function Home() {
   ]
   return (
     <>
-      <section className='flex flex-col items-center justify-center h-[50vh] bg-banner bg-center bg-cover gap-2' >
-        <h1 className='text-3xl font-bold text-white'>Paloma Sansores</h1>
-        <p className='text-lg font-light text-white w-2/3 text-center'>Si estás aquí es una señal para cambiar tu vida </p>
+      <section className='flex flex-col items-center justify-center h-[50vh] xl:h-[70vh] bg-banner bg-center bg-cover gap-2' >
+        <h1 className='text-3xl lg:text-5xl xl:text-6xl font-bold text-white'>Paloma Sansores</h1>
+        <p className='text-lg lg:text-2xl xl:text-4xl font-light text-white w-2/3 text-center'>Si estás aquí es una señal para cambiar tu vida </p>
         <div className='mt-6'>
           <Button
             label="Empieza HOY"
