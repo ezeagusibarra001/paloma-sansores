@@ -61,9 +61,11 @@ export default function Home() {
         <p className='font-bold text-xl text-center my-12'>
           Mis Cursos/Mentorías
         </p>
-        <SliderPagination
-          items={courses.map((course) => (<CardCourse {...course} />))}
-        />
+        <div className='mx-auto md:w-3/4'>
+          <SliderPagination
+            items={courses.map((course) => (<CardCourse {...course} />))}
+          />
+        </div>
       </section>
       <section >
         <div className='h-[50vh] bg-paloma bg-cover bg-center'></div>
