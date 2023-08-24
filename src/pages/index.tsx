@@ -1,7 +1,6 @@
 import React from 'react'
-import { Button, Icon } from 'mdc-ui'
+import { Button, Icon, Slider } from 'mdc-ui'
 import NoteCard from '@/components/home/NoteCard'
-import SliderPagination from '@/components/common/SliderPagination'
 import CardCourse from '@/components/home/CardCourse'
 
 export default function Home() {
@@ -61,9 +60,10 @@ export default function Home() {
         <p className='font-bold text-xl text-center my-12'>
           Mis Cursos/Mentorías
         </p>
-        <div className='mx-auto md:w-3/4'>
-          <SliderPagination
+        <div className='mx-auto md:w-3/4 mb-12'>
+          <Slider
             items={courses.map((course) => (<CardCourse {...course} />))}
+            delay={4000}
           />
         </div>
       </section>
