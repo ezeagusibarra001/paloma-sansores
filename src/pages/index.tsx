@@ -1,9 +1,10 @@
-import React from 'react'
-import { Button, Icon, Slider } from 'mdc-ui'
+import React, {useState} from 'react'
+import { Button, Icon, Modal, Slider } from 'mdc-ui'
 import NoteCard from '@/components/home/NoteCard'
 import CardCourse from '@/components/home/CardCourse'
 
 export default function Home() {
+  const [open, setOpen] = useState(false)
   const courses = [
     {
       title: 'Curso 1',
@@ -84,6 +85,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <button onClick={() =>setOpen(true)}>open</button>
+      <Modal isOpen={open} onClose={() => setOpen(!open)}>
+        <div>
+          hello
+        </div>
+      </Modal>
     </>
   )
 }
