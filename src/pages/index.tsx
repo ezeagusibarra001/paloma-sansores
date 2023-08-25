@@ -4,7 +4,7 @@ import NoteCard from '@/components/home/NoteCard'
 import CardCourse from '@/components/home/CardCourse'
 
 export default function Home() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const courses = [
     {
       title: 'Curso 1',
@@ -85,8 +85,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <button onClick={() =>setOpen(true)}>open</button>
-      <Modal isOpen={open} onClose={() => setOpen(!open)}>
+      <Modal bgColor='blue' shade='300' isOpen={open} onClose={() => setOpen(!open)}>
         <div>
           hello
         </div>
