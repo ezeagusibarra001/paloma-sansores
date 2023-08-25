@@ -33,7 +33,7 @@ export default function Home() {
       </section>
       <section className='flex flex-col items-center justify-center'>
         <p className='text-sm lg:text-xl xl:text-3xl font-bold w-1/2 text-center my-12'>Es momento de elevar tu conciencia y tus resultados</p>
-        <div className='mb-12 flex flex-col gap-4 lg:grid gap-4 grid-cols-2 grid-rows-2'>
+        <div className='mb-12 flex flex-col gap-4 lg:grid grid-cols-2 grid-rows-2 lg:w-4/5'>
           <NoteCard
             title='Cursos'
             description='Estás a tiempo de cumplir tus sueños, yo se como ayudarte'
