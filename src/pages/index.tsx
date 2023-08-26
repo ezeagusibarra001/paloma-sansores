@@ -2,8 +2,10 @@ import React, {useState} from 'react'
 import { Button, Icon, Modal, Slider } from 'mdc-ui'
 import NoteCard from '@/components/home/NoteCard'
 import CardCourse from '@/components/home/CardCourse'
+import { useRouter } from 'next/router'
 
 export default function Home() {
+  const router = useRouter()
   const [open, setOpen] = useState(true)
   const courses = [
     {
@@ -68,9 +70,9 @@ export default function Home() {
           />
         </div>
       </section>
-      <section >
-        <div className='h-[50vh] bg-paloma bg-cover bg-center'></div>
-        <div className='p-12 text-gray bg-gray-100 '>
+      <section className='md:flex gap-20 justify-center items-center mb-12' >
+        <div className='h-[70vh] bg-paloma bg-cover bg-top md:w-1/4 md:rounded-2xl md:h-[70vh]'></div>
+        <div className='p-12 text-gray md:w-1/3 md:p-0'>
           <p className='text-xs mb-4'>Paloma Sansores, Coach Millonario</p>
           <p className='text-xl font-bold mb-7'>La mentalidad correcta te llevará a tus resultados deseados.</p>
           <p className='text-sm mb-4'>Soy Paloma Sansores, tengo más de 8 años de emprendimiento en negocios digitales y disfrutando de la libertad financiera. Inicié esta carrera del emprendimiento porque siempre supe como quería vivir mi vida, sabia que quería vivir mi vida bajo mis propios términos.</p>
@@ -80,7 +82,7 @@ export default function Home() {
               label="Sobre Mi"
               color="gray"
               shade='300'
-              onClick={() => console.log("Sobre Mi")}
+              onClick={() => router.push("sobre-mi")}
             />
           </div>
         </div>
