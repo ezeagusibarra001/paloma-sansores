@@ -63,7 +63,7 @@ export default function Home() {
           Mis Cursos/Mentorías
         </p>
         <SliderPagination
-          items={courses.map((course) => (<CardCourse {...course} />))}
+          items={courses.map((course, index) => (<CardCourse key={index} {...course} />))}
         />
       </section>
       <section>
