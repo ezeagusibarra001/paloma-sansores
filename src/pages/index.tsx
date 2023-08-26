@@ -66,7 +66,7 @@ export default function Home() {
         </p>
         <div className='mx-auto md:w-3/4 mb-12'>
           <Slider
-            items={courses.map((course) => (<CardCourse {...course} />))}
+            items={courses.map((course, index) => (<CardCourse key={index} {...course} />))}
             delay={4000}
           />
         </div>
