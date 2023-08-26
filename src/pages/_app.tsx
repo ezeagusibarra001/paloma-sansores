@@ -2,12 +2,13 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Red_Hat_Display } from 'next/font/google'
 import { Layout } from 'mdc-ui'
-import { CssBaseline } from 'mdc-ui'
 import { getCssVariables } from '@/constants/Colors'
+import { useRouter } from 'next/router'
 
 const red_hat_display = Red_Hat_Display({ subsets: ['latin'] })
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter()
   return (
     <>
       <style>
@@ -26,11 +27,11 @@ export default function App({ Component, pageProps }: AppProps) {
             menu: [
               {
                 name: "Home",
-                onClick: () => console.log("Home"),
+                onClick: () => router.push("/"),
               },
               {
                 name: "Sobre Mi",
-                onClick: () => console.log("Sobre Mi"),
+                onClick: () => router.push("/sobre-mi"),
               },
               {
                 name: "Capacitaciones",
@@ -61,20 +62,20 @@ export default function App({ Component, pageProps }: AppProps) {
           logo: "/img/logo.png",
           menu: [
             {
-              name: "Mis cursos",
-              onClick: () => console.log("Mis cursos"),
+              name: "Sobre Mi",
+              onClick: () => router.push("/sobre-mi"),
+            },
+            {
+              name: "Capacitaciones",
+              onClick: () => console.log("Capacitaciones"),
             },
             {
               name: "Eventos",
               onClick: () => console.log("Eventos"),
             },
             {
-              name: "Mentorias",
-              onClick: () => console.log("Mentorias"),
-            },
-            {
-              name: "Sobre WEM",
-              onClick: () => console.log("Mentorias"),
+              name: "WEM",
+              onClick: () => console.log("WEM"),
             },
           ],
           social: [
