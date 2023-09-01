@@ -35,23 +35,23 @@ export default function App({ Component, pageProps }: AppProps) {
               },
               {
                 name: "Capacitaciones",
-                onClick: () => console.log("Capacitaciones"),
+                onClick: () => router.push("/capacitaciones"),
               },
               {
                 name: "Eventos",
-                onClick: () => console.log("Eventos"),
+                onClick: () => router.push("/eventos"),
               },
               {
                 name: "WEM",
-                onClick: () => console.log("WEM"),
+                onClick: () => router.push("/wem"),
               },
               {
                 name: "Contacto",
-                onClick: () => console.log("Contacto"),
+                onClick: () => router.push("/contacto"),
               },
               {
                 name: "Admin",
-                onClick: () => console.log("Contacto"),
+                onClick: () => router.push("/admin"),
                 isButton: true,
                 isOnlyDesktop: true,
               },
@@ -67,15 +67,15 @@ export default function App({ Component, pageProps }: AppProps) {
             },
             {
               name: "Capacitaciones",
-              onClick: () => console.log("Capacitaciones"),
+              onClick: () => router.push("/capacitaciones"),
             },
             {
               name: "Eventos",
-              onClick: () => console.log("Eventos"),
+              onClick: () => router.push("/eventos"),
             },
             {
               name: "WEM",
-              onClick: () => console.log("WEM"),
+              onClick: () => router.push("/wem"),
             },
           ],
           social: [
