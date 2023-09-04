@@ -1,12 +1,23 @@
-import React, {useState} from 'react'
-import { Button, Icon, Modal, Slider } from 'mdc-ui'
+import React, { useEffect, useState } from 'react'
+import { Button, Icon, Input, Modal, Slider } from 'mdc-ui'
 import NoteCard from '@/components/home/NoteCard'
 import CardCourse from '@/components/home/CardCourse'
 import { useRouter } from 'next/router'
+import useStorage from '@/hooks/useStorage'
 
 export default function Home() {
   const router = useRouter()
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
+  const { getItem, setItem } = useStorage();
+  const alreadyOpen = getItem('alreadyOpen');
+
+  useEffect(() => {
+    if (alreadyOpen !== "true") {
+      setOpen(true);
+      setItem('alreadyOpen', "true");
+    }
+  }, [])
+
   const courses = [
     {
       title: 'Curso 1',
@@ -88,9 +99,21 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <Modal bgColor='blue' shade='300' isOpen={open} onClose={() => setOpen(!open)}>
-        <div>
-          hello
+      <Modal bgImage='/img/bg-modal.png' shade='300' isOpen={open} onClose={() => setOpen(!open)}>
+        <div className='flex flex-col gap-5'>
+          <h2 className='text-white uppercase text-2xl'>Enterate todas las novedades que tengo para tí</h2>
+          <p className='text-white'>¡Próximamente anunciaré nuevos cursos y eventos presenciales!</p>
+          <div className='flex items-center gap-4'>
+            <Input
+              onChange={() => console.log('onChange')}
+              placeholder='Déjame tu email'
+              bgColor='white'
+              type="text"
+            />
+            <div className='w-10 h-8 bg-white/30 rounded p-2'>
+              <Icon name="arrowRight" color='white' />
+            </div>
+          </div>
         </div>
       </Modal>
     </>
