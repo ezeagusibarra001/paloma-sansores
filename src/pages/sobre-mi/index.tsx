@@ -38,7 +38,7 @@ export default function SobreMi() {
             <section className='my-12'>
                 <div className='flex flex-col gap-4 justify-center items-center mx-6 rounded-xl shadow-lg p-4'>
                     <div className='w-6 h-6'>
-                        <Icon name="course" color='blue' />
+                        <Icon name='course' color='blue' />
                     </div>
                     <p className='text-blue text-center'>Lo más grandioso en la vida es descubrir quién eres, encontrar tu don y ponerlo al servicio de los demás"</p>
                     <p className='text-sm text-gray'>Paloma Sansores, Coach Millonaria</p>
