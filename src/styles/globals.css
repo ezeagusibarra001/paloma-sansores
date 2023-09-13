@@ -103,3 +103,7 @@
     --red: #FF5C5C;
     --red-rgb: 255, 92, 92;
 } */
+
+li {
+    list-style:disc
+}
