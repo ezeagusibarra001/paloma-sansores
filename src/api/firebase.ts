@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCJWPDozw1wedlbcq-AVg29-gdOgfM08Rw",
@@ -18,6 +18,16 @@ export const login = async (email: string, password: string) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     return user;
+};
+
+export const authState = (callback: (arg0: any) => void) => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      callback(user);
+    } else {
+      callback(null);
+    }
+  });
 };
 
 export { auth };
