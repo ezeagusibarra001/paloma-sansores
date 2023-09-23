@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCJWPDozw1wedlbcq-AVg29-gdOgfM08Rw",
-  authDomain: "paloma-sansores.firebaseapp.com",
-  projectId: "paloma-sansores",
-  storageBucket: "paloma-sansores.appspot.com",
-  messagingSenderId: "636478822291",
-  appId: "1:636478822291:web:0ec670e1621457ca62ba66"
+  apiKey: "AIzaSyBCjvxG6p_QSpOEBNGsFo71iKaBOw-FD40",
+  authDomain: "paloma-c8fa9.firebaseapp.com",
+  projectId: "paloma-c8fa9",
+  storageBucket: "paloma-c8fa9.appspot.com",
+  messagingSenderId: "1073293763150",
+  appId: "1:1073293763150:web:694d9b56f2bb1d72f8d91f"
 };
 
 const app = initializeApp(firebaseConfig);
