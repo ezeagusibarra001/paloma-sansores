@@ -19,6 +19,7 @@ module.exports = {
         bannerSobreMi: "url('/img/banner-sobre-mi.png')",
         sobreMi: "url('/img/sobre-mi.png')",
         micro: "url('/img/micro.png')",
+        elipse: "url('/img/elipse.png')",
       },
     },
   },
