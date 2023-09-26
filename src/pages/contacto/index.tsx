@@ -9,13 +9,22 @@ export default function Contacto() {
   });
   return (
     <>
-      <section className="flex flex-col gap-4 py-20 justify-center items-center bg-left lg:flex-row lg:justify-evenly">
+      <section className="flex flex-col gap-4 py-20 justify-center lg:items-center bg-left lg:flex-row lg:justify-evenly">
         <div>
-          <p className="text-2xl text-left text-blue-900 font-semibold lg:text-4xl">
+          <p className="text-2xl text-center text-left text-blue-900 font-semibold lg:text-4xl">
             Mantengamos contacto!
           </p>
+          <div className="my-8 hidden lg:block">
+            <p className="text-xl">Dirección</p>
+            <p className="text-gray px-4">Tulum, México</p>
+          </div>
+          <div className="my-8 hidden lg:block">
+            <p className="text-xl">Contacto</p>
+            <p className="text-gray px-4">sansorespaloma@gmail.com</p>
+            <p className="text-gray px-4">+52 1 984 276 7710</p>
+          </div>
         </div>
-        <div className="w-4/5 mx-auto bg-blue/20 flex flex-col gap-8 my-4 rounded-xl px-4 py-8 lg:w-2/5 lg:mx-0">
+        <div className="w-4/5 mx-auto bg-blue/20 flex flex-col gap-8 my-4 rounded-xl px-12 py-8 lg:w-2/5 lg:mx-0">
           <h3 className="text-blue-900 font-medium text-center">
             ¡Suscríbete a nuestro newsletter para enterarte de los próximos
             eventos!
@@ -33,6 +42,15 @@ export default function Contacto() {
             onChange={(value) => setData({ ...data, email: value })}
           />
           <Button onClick={() => {}} shade="700" label="ENVIAR" />
+        </div>
+        <div className="my-8 lg:hidden w-4/5 mx-auto">
+          <p className="text-xl">Dirección</p>
+          <p className="text-gray">Tulum, México</p>
+        </div>
+        <div className="my-8 lg:hidden w-4/5 mx-auto">
+          <p className="text-xl">Contacto</p>
+          <p className="text-gray">sansorespaloma@gmail.com</p>
+          <p className="text-gray">+52 1 984 276 7710</p>
         </div>
       </section>
       <h2 className="text-3xl font-medium my-12 text-center">
