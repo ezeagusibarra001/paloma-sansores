@@ -1,5 +1,5 @@
 import Accordion from "@/components/common/Accordion";
-import { Button, Input } from "mdc-ui";
+import { Button, Icon, Input } from "mdc-ui";
 import React, { useState } from "react";
 
 export default function Contacto() {
@@ -18,10 +18,20 @@ export default function Contacto() {
             <p className="text-xl">Dirección</p>
             <p className="text-gray px-4">Tulum, México</p>
           </div>
-          <div className="my-8 hidden lg:block">
+          <div className="my-8 hidden lg:flex lg:flex-col lg:gap-4 ">
             <p className="text-xl">Contacto</p>
-            <p className="text-gray px-4">sansorespaloma@gmail.com</p>
-            <p className="text-gray px-4">+52 1 984 276 7710</p>
+            <div className="flex gap-4 mx-4">
+              <div className="w-6 h-6">
+                <Icon name="email" color="gray" />
+              </div>
+              <p className="text-gray">sansorespaloma@gmail.com</p>
+            </div>
+            <div className="flex gap-4 mx-4">
+              <div className="w-6 h-6">
+                <Icon name="phone" color="gray" />
+              </div>
+              <p className="text-gray">+52 1 984 276 7710</p>
+            </div>
           </div>
         </div>
         <div className="w-4/5 mx-auto bg-blue/20 flex flex-col gap-8 my-4 rounded-xl px-12 py-8 lg:w-2/5 lg:mx-0">
@@ -47,16 +57,27 @@ export default function Contacto() {
           <p className="text-xl">Dirección</p>
           <p className="text-gray">Tulum, México</p>
         </div>
-        <div className="my-8 lg:hidden w-4/5 mx-auto">
+        <div className="my-8 flex flex-col gap-4 lg:hidden w-4/5 mx-auto">
           <p className="text-xl">Contacto</p>
-          <p className="text-gray">sansorespaloma@gmail.com</p>
-          <p className="text-gray">+52 1 984 276 7710</p>
+          <div className="flex gap-4">
+            <div className="w-6 h-6">
+              <Icon name="email" color="gray" />
+            </div>
+            <p className="text-gray">sansorespaloma@gmail.com</p>
+          </div>
+          <div className="flex gap-4">
+            <div className="w-6 h-6">
+              <Icon name="phone" color="gray" />
+            </div>
+            <p className="text-gray">+52 1 984 276 7710</p>
+          </div>
         </div>
       </section>
       <h2 className="text-3xl font-medium my-12 text-center">
         Preguntas frecuentes
       </h2>
       <Accordion
+        withButton={false}
         items={[
           {
             title: "Retiro Emprendedor a Tulum ",
