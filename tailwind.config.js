@@ -21,6 +21,7 @@ module.exports = {
         micro: "url('/img/micro.png')",
         elipse: "url('/img/elipse.png')",
         wem: "url('/img/wem.png')",
+        women: "url('/img/women.png')",
       },
     },
   },

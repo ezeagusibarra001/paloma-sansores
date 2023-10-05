@@ -1,12 +1,23 @@
+import { sendEmail } from "@/api/email";
 import Accordion from "@/components/common/Accordion";
 import { Button, Icon, Input } from "mdc-ui";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Contacto() {
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     name: "",
     email: "",
   });
+
+  const handelSend = async () => {
+    setLoading(true);
+    await sendEmail(data.email, data.name);
+    toast.success('¡Gracias por suscribirte!')
+    setLoading(false);
+  };
+
   return (
     <>
       <section className="flex flex-col gap-4 py-20 justify-center lg:items-center bg-left lg:flex-row lg:justify-evenly">
@@ -51,7 +62,12 @@ export default function Contacto() {
             value={data.email}
             onChange={(value) => setData({ ...data, email: value })}
           />
-          <Button onClick={() => {}} shade="700" label="ENVIAR" />
+          <Button
+            disabled={data.name.length === 0 || data.email.length === 0}
+            onClick={handelSend}
+            shade="700"
+            label={loading ? "ENVIANDO..." : "ENVIAR"}
+          />
         </div>
         <div className="my-8 lg:hidden w-4/5 mx-auto">
           <p className="text-xl">Dirección</p>
