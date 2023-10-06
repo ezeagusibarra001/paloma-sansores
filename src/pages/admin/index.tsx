@@ -22,8 +22,18 @@ export default function Admin() {
     link: string;
     image: string;
     price: string;
+    title: string;
     description: string;
-  }>();
+    curso: boolean;
+  }>({
+    name: "",
+    link: "",
+    image: "",
+    price: "",
+    title: "",
+    description: "",
+    curso: false,
+  });
   const router = useRouter();
   useEffect(() => {
     if (!user) router.push("/login");
@@ -31,12 +41,13 @@ export default function Admin() {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    const { name, link, image, price, description } = e.currentTarget;
+    const { name, link, image, price, description,title, curso } = e.currentTarget;
     if (
       !name.value ||
       !link.value ||
       !image.files[0] ||
       !price.value ||
+      !title.value ||
       !description.value
     )
       return toast.error("Todos los campos son requeridos");
@@ -45,27 +56,30 @@ export default function Admin() {
       link: link.value,
       image: image.files[0],
       price: price.value,
+      title: title.value,
       description: description.value,
+      curso: curso.checked,
     };
     setCapacitaciones(capacitacion);
   };
 
   const handleSubir = async () => {
     try {
-      if(!capacitaciones) return toast.error("Todos los campos son requeridos");
-      const url = await uploadImage("capacitaciones",capacitaciones.image);
+      if (!capacitaciones)
+        return toast.error("Todos los campos son requeridos");
+      const url = await uploadImage("capacitaciones", capacitaciones.image);
       const data = {
         ...capacitaciones,
         image: url,
-        items
-      }
+        items,
+      };
       await addData("capacitaciones", data);
       toast.success("Capacitación subida con éxito");
     } catch (error) {
       console.error(error);
       toast.error("Error al subir capacitación");
     }
-  }
+  };
 
   return (
     <div className="flex min-h-[calc(100vh-6rem)]">
@@ -91,6 +105,10 @@ export default function Admin() {
           <h2 className="text-2xl mb-6">Capacitaciones</h2>
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <form onSubmit={handleSubmit}>
+              <div>
+                <input type="checkbox" name="curso" />
+                <label htmlFor="scales">Es un curso?</label>
+              </div>
               <input
                 name="name"
                 type="text"
@@ -113,6 +131,12 @@ export default function Admin() {
                 name="price"
                 type="number"
                 placeholder="Precio"
+                className="border p-2 mb-4 w-full"
+              />
+              <input
+                name="title"
+                type="text"
+                placeholder="Titulo"
                 className="border p-2 mb-4 w-full"
               />
               <textarea

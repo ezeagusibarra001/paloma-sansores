@@ -66,6 +66,14 @@ export const getAll = async (col: string) => {
   return list;
 };
 
+// GET ONE BY ID BY COLLECTION
+
+export const getById = async (col: string, id: any) => {
+  const docRef = doc(db, col, id);
+  const data = await getDoc(docRef);
+  return data.data();
+};
+
 
 // ADD ONE BY COLLECTION
 
