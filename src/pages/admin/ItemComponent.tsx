@@ -41,11 +41,11 @@ const ItemComponent: React.FC<Props> = ({ items, setItems }) => {
 
   return (
     <div>
-      {items.map((item, index) => (
+      {items?.map((item, index) => (
         <div key={index} className="mb-4">
           <p className="font-bold">{item.name}</p>
           <ul>
-            {item.bullets.map((bullet, bulletIndex) => (
+            {item?.bullets?.map((bullet, bulletIndex) => (
               <li key={bulletIndex}>{bullet}</li>
             ))}
           </ul>
