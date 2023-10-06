@@ -5,6 +5,7 @@ import { Layout } from "mdc-ui";
 import { getCssVariables } from "@/constants/Colors";
 import { useRouter } from "next/router";
 import { AppProvider } from "@/context/AppStore";
+import { Toaster } from "react-hot-toast";
 
 const red_hat_display = Red_Hat_Display({ subsets: ["latin"] });
 
@@ -106,6 +107,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </Layout>
       </AppProvider>
+      <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 }

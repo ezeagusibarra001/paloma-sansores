@@ -1,12 +1,21 @@
+import { sendEmail } from "@/api/email";
 import Accordion from "@/components/common/Accordion";
 import { Button, Input } from "mdc-ui";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Eventos() {
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     name: "",
     email: "",
   });
+  const handelSend = async () => {
+    setLoading(true);
+    await sendEmail(data.email, data.name);
+    toast.success("¡Gracias por suscribirte!");
+    setLoading(false);
+  };
   return (
     <>
       <section className="flex flex-col gap-4 py-20 bg-blue/20 bg-no-repeat justify-center items-center bg-elipse bg-cover bg-left lg:flex-row lg:justify-evenly">
@@ -33,29 +42,36 @@ export default function Eventos() {
             onChange={(value) => setData({ ...data, email: value })}
           />
           <div>
-            <Button onClick={() => {}} shade="900" label="ENVIAR" />
+            <Button
+              disabled={data.name.length === 0 || data.email.length === 0}
+              onClick={handelSend}
+              shade="700"
+              label={loading ? "ENVIANDO..." : "ENVIAR"}
+            />
           </div>
         </div>
       </section>
-      <Accordion
-        items={[
-          {
-            title: "Retiro Emprendedor a Tulum ",
-            description:
-              "¡Bienvenidos al Retiro Emprendedor en Tulum! Este retiro está diseñado para inspirar, empoderar y fortalecer a los emprendedores en su camino hacia el éxito. Únete a nosotros para experimentar una combinación única de aprendizaje, crecimiento personal y conexión con la vibrante energía de Tulum. A lo largo del retiro, participarás en talleres interactivos, sesiones de mentoría, conferencias motivadoras y actividades de networking estratégico. Aprenderás las mejores prácticas para impulsar tu negocio, adquirirás herramientas prácticas para superar desafíos y explorarás nuevas formas de pensar que te ayudarán a alcanzar tus metas emprendedoras. Nuestro equipo de expertos y mentores estará a tu disposición para proporcionarte orientación personalizada y apoyo estratégico. Te ayudarán a desarrollar un plan de negocios sólido, a potenciar tus habilidades de liderazgo y a establecer conexiones valiosas con otros emprendedores.",
-          },
-          {
-            title: "Título 2",
-            description:
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-          },
-          {
-            title: "Título 3",
-            description:
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-          },
-        ]}
-      />
+      <div className="my-12">
+        <Accordion
+          items={[
+            {
+              title: "Retiro Emprendedor a Tulum ",
+              description:
+                "¡Bienvenidos al Retiro Emprendedor en Tulum! Este retiro está diseñado para inspirar, empoderar y fortalecer a los emprendedores en su camino hacia el éxito. Únete a nosotros para experimentar una combinación única de aprendizaje, crecimiento personal y conexión con la vibrante energía de Tulum. A lo largo del retiro, participarás en talleres interactivos, sesiones de mentoría, conferencias motivadoras y actividades de networking estratégico. Aprenderás las mejores prácticas para impulsar tu negocio, adquirirás herramientas prácticas para superar desafíos y explorarás nuevas formas de pensar que te ayudarán a alcanzar tus metas emprendedoras. Nuestro equipo de expertos y mentores estará a tu disposición para proporcionarte orientación personalizada y apoyo estratégico. Te ayudarán a desarrollar un plan de negocios sólido, a potenciar tus habilidades de liderazgo y a establecer conexiones valiosas con otros emprendedores.",
+            },
+            {
+              title: "Título 2",
+              description:
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+            },
+            {
+              title: "Título 3",
+              description:
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+            },
+          ]}
+        />
+      </div>
     </>
   );
 }

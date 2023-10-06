@@ -8,9 +8,10 @@ interface AccordionItem {
 
 interface AccordionProps {
   items: AccordionItem[];
+  withButton?: boolean;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ items }) => {
+const Accordion: React.FC<AccordionProps> = ({ items, withButton = true }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const handleToggle = (index: number) => {
@@ -28,10 +29,13 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
             <div className="font-medium text-xl text-gray-600">
               {item.title}
             </div>
+
             <div className="flex items-center gap-6">
-              <div className="bg-blue-700 rounded-full text-white px-4 py-2">
-                19 de Julio
-              </div>
+              {withButton && (
+                <div className="bg-blue-700 rounded-full text-white px-4 py-2">
+                  19 de Julio
+                </div>
+              )}
               <div
                 className={`${
                   openIndex === index && "transform rotate-180"

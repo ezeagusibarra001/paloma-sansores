@@ -49,7 +49,7 @@ export const AVAILABLE_COLORS = {
     },
     pink: {
         "100": "#FFE7FA",
-        "300": "#FFA9F0",
+        "300": "#E9A2B6",
         "500": "#FF60E5",
         "700": "#D946EF",
         "900": "#B900C3",
