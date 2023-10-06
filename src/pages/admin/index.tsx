@@ -2,14 +2,20 @@ import { useApp } from "@/context/AppStore";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
+import ItemComponent from "./ItemComponent";
+import { addData, uploadImage } from "@/api/firebase";
 
+interface Item {
+  name: string;
+  bullets: string[];
+}
 
-const admin = ["capacitaciones", "users", "settings"];
+const admin = ["capacitaciones"];
 
 export default function Admin() {
   const { user } = useApp();
-  const json = useRef(null);
   const [state, setState] = useState("capacitaciones");
+  const [items, setItems] = useState<Item[]>([]);
 
   const [capacitaciones, setCapacitaciones] = useState<{
     name: string;
@@ -29,7 +35,7 @@ export default function Admin() {
     if (
       !name.value ||
       !link.value ||
-      !image.value ||
+      !image.files[0] ||
       !price.value ||
       !description.value
     )
@@ -37,12 +43,29 @@ export default function Admin() {
     const capacitacion = {
       name: name.value,
       link: link.value,
-      image: image.value,
+      image: image.files[0],
       price: price.value,
       description: description.value,
     };
     setCapacitaciones(capacitacion);
   };
+
+  const handleSubir = async () => {
+    try {
+      if(!capacitaciones) return toast.error("Todos los campos son requeridos");
+      const url = await uploadImage("capacitaciones",capacitaciones.image);
+      const data = {
+        ...capacitaciones,
+        image: url,
+        items
+      }
+      await addData("capacitaciones", data);
+      toast.success("Capacitación subida con éxito");
+    } catch (error) {
+      console.error(error);
+      toast.error("Error al subir capacitación");
+    }
+  }
 
   return (
     <div className="flex min-h-[calc(100vh-6rem)]">
@@ -112,10 +135,10 @@ export default function Admin() {
             {capacitaciones && (
               <div className="rounded-lg shadow-lg p-4 my-12">
                 <h3>Cards</h3>
-                
+                <ItemComponent items={items} setItems={setItems} />
                 <button
-                  onClick={() => console.log("yooo")}
-                  className="bg-gray-500 text-white p-2 rounded-lg"
+                  onClick={handleSubir}
+                  className="bg-gray-500 text-white p-2 rounded-lg my-12"
                 >
                   Subir capacitación
                 </button>
