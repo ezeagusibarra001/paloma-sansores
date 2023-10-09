@@ -41,8 +41,8 @@ export default function Capacitaciones() {
                 {
                     capacitaciones.filter(c => filter == 'all' || c.curso == (filter == 'courses')).map((capacitacion, index) => {
                         return (
-                            <div className='min-w-92'>
-                                <Card key={index} img={capacitacion.image} onClick={() => {router.push(`/capacitaciones/${capacitacion.id}`)}} title={capacitacion.name} price={capacitacion.price}  label='Precio Lanzamiento'/>
+                            <div key={index} className='min-w-92'>
+                                <Card  img={capacitacion.image} onClick={() => {router.push(`/capacitaciones/${capacitacion.id}`)}} title={capacitacion.name} price={capacitacion.price}  label='Precio Lanzamiento'/>
                             </div>
                         )
                     }
