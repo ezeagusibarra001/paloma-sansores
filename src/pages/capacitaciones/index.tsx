@@ -39,9 +39,11 @@ export default function Capacitaciones() {
             </section>
             <section className='my-12 flex flex-wrap gap-8 justify-center items-center'>
                 {
-                    capacitaciones.map((capacitacion, index) => {
+                    capacitaciones.filter(c => filter == 'all' || c.curso == (filter == 'courses')).map((capacitacion, index) => {
                         return (
-                            <Card key={index} img={capacitacion.image} onClick={() => {router.push(`/capacitaciones/${capacitacion.id}`)}} title={capacitacion.name} price={capacitacion.price}  label='Precio Lanzamiento'/>
+                            <div key={index} className='min-w-92'>
+                                <Card  img={capacitacion.image} onClick={() => {router.push(`/capacitaciones/${capacitacion.id}`)}} title={capacitacion.name} price={capacitacion.price}  label='Precio Lanzamiento'/>
+                            </div>
                         )
                     }
                     )
