@@ -57,7 +57,7 @@ export default function Admin() {
       image: image.files[0],
       price: price.value,
       title: title.value,
-      description: description.value,
+      description:  description.value.replace(/\n/g, "<br>"),
       curso: curso.checked,
     };
     setCapacitaciones(capacitacion);
@@ -156,7 +156,7 @@ export default function Admin() {
                 Siguiente
               </button>
             </form>
-            {capacitaciones && (
+            {capacitaciones.image && (
               <div className="rounded-lg shadow-lg p-4 my-12">
                 <h3>Cards</h3>
                 <ItemComponent items={items} setItems={setItems} />
