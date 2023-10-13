@@ -4,6 +4,8 @@ import NoteCard from "@/components/home/NoteCard";
 import CardCourse from "@/components/home/CardCourse";
 import { useRouter } from "next/router";
 import useStorage from "@/hooks/useStorage";
+import { getAll } from "@/api/firebase";
+import toast from "react-hot-toast";
 
 export default function Home() {
   const router = useRouter();
@@ -18,22 +20,21 @@ export default function Home() {
     }
   }, []);
 
-  const courses = [
-    {
-      title: "Curso 1",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, voluptatum.",
-      image: "speaker",
-      price: 100,
-    },
-    {
-      title: "Curso 1",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, voluptatum.",
-      image: "speaker",
-      price: 100,
-    },
-  ];
+  const [capacitaciones, setCapacitaciones] = useState<any[]>([]);
+
+  const getCapacitaciones = async () => {
+    try {
+      const data = await getAll("capacitaciones");
+      console.log(data);
+      setCapacitaciones(data);
+    } catch (error) {
+      toast.error("Error al obtener las capacitaciones");
+    }
+  };
+
+  useEffect(() => {
+    getCapacitaciones();
+  }, []);
 
   return (
     <>
@@ -85,7 +86,7 @@ export default function Home() {
         </p>
         <div className="mx-auto md:w-3/4 mb-12">
           <Slider
-            items={courses.map((course, index) => (
+            items={capacitaciones.map((course, index) => (
               <CardCourse key={index} {...course} />
             ))}
             delay={4000}

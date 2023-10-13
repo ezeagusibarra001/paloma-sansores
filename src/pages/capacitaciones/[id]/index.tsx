@@ -1,5 +1,6 @@
 import { getById } from "@/api/firebase";
 import { Button } from "mdc-ui";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -60,18 +61,19 @@ export default function Capacitacion() {
             className="text-gray"
             dangerouslySetInnerHTML={{ __html: capacitacion.description }}
           ></p>
-          <div className="hidden mt-8 lg:flex">
-            <Button
-              label="Comprar Ahora"
-              color="blue"
-              shade="700"
-              onClick={() => {}}
-            />
+          <div className="mt-8 w-fit">
+            <Link
+              href={capacitacion.link}
+              target="_blank"
+              className="hidden lg:flex bg-blue-900 px-4 py-2 rounded-full text-white"
+            >
+              Comprar Ahora
+            </Link>
           </div>
         </div>
         <div className="flex flex-col lg:w-1/2 lg:mt-16">
           {capacitacion.items.map((item: any, index: number) => (
-            <div className="bg-blue/60 -mt-2 rounded-2xl" key={index}>
+            <div className="bg-blue -mt-2 rounded-2xl" key={index}>
               <p className="px-8 py-4 text-white text-xl font-bold">
                 {item.name}
               </p>
@@ -85,13 +87,14 @@ export default function Capacitacion() {
             </div>
           ))}
 
-          <div className="mt-8 lg:hidden">
-            <Button
-              label="Comprar Ahora"
-              color="blue"
-              shade="700"
-              onClick={() => {}}
-            />
+          <div className="mt-8">
+            <Link
+              href={capacitacion.link}
+              target="_blank"
+              className=" lg:hidden bg-blue-800 px-4 py-2 rounded-full text-white"
+            >
+              Comprar Ahora
+            </Link>
           </div>
         </div>
       </section>

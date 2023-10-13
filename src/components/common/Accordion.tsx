@@ -1,9 +1,12 @@
 import { Icon } from "mdc-ui";
+import Link from "next/link";
 import React, { useState } from "react";
 
 interface AccordionItem {
   title: string;
   description: string;
+  date?: string;
+  link?: string;
 }
 
 interface AccordionProps {
@@ -33,13 +36,13 @@ const Accordion: React.FC<AccordionProps> = ({ items, withButton = true }) => {
             <div className="flex items-center gap-6">
               {withButton && (
                 <div className="bg-blue-700 rounded-full text-white px-4 py-2">
-                  19 de Julio
+                  {item.date}
                 </div>
               )}
               <div
                 className={`${
                   openIndex === index && "transform rotate-180"
-                } w-8 h-8`}
+                } w-8 h-8 hidden sm:flex`}
               >
                 <Icon name="arrowDown" color="gray" />
               </div>
@@ -47,10 +50,18 @@ const Accordion: React.FC<AccordionProps> = ({ items, withButton = true }) => {
           </button>
           {openIndex === index && (
             <div className="bg-gray-100 rounded-b-xl text-gray-600 p-6">
-              {item.description}
-              <div className="bg-blue-700 rounded-full text-white px-4 py-2 w-fit mt-5">
-                ¡Me interesa ser parte!
-              </div>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: item.description,
+                }}
+              ></div>
+              {item.link && (
+                <Link href={item.link} target="_blank">
+                  <div className="bg-blue-700 rounded-full text-white px-4 py-2 w-fit mt-5">
+                    ¡Me interesa ser parte!
+                  </div>
+                </Link>
+              )}
             </div>
           )}
         </div>
