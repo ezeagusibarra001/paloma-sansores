@@ -1,8 +1,28 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Button, Card } from 'mdc-ui'
+import { getAll } from '@/api/firebase'
+import toast from 'react-hot-toast'
+import { useRouter } from 'next/router'
 
 export default function Capacitaciones() {
-    const [filter, setFilter] = useState<string>('')
+    const router = useRouter()
+    const [filter, setFilter] = useState<string>('all')
+    const [capacitaciones, setCapacitaciones] = useState<any[]>([])
+
+    const getCapacitaciones = async() => {
+        try {
+            const data = await getAll('capacitaciones')
+            console.log(data)
+            setCapacitaciones(data)
+        } catch (error) {
+            toast.error('Error al obtener las capacitaciones')
+        }
+    }
+
+    useEffect(() => {
+        getCapacitaciones()
+    }
+    , [])
 
     return (
         <>
@@ -18,10 +38,16 @@ export default function Capacitaciones() {
                 </div>
             </section>
             <section className='my-12 flex flex-wrap gap-8 justify-center items-center'>
-                <Card img='https://elestudiantedigital.com/wp-content/uploads/2019/01/cursos-online-gratuitos-certificados.jpg' onClick={() => {}} title='Networker Digital: Habilidades Disruptivas' price={297}  label='Precio Lanzamiento'/>
-                <Card img='https://elestudiantedigital.com/wp-content/uploads/2019/01/cursos-online-gratuitos-certificados.jpg' onClick={() => {}} title='Networker Digital: Habilidades Disruptivas' price={297}  label='Precio Lanzamiento'/>
-                <Card img='https://elestudiantedigital.com/wp-content/uploads/2019/01/cursos-online-gratuitos-certificados.jpg' onClick={() => {}} title='Networker Digital: Habilidades Disruptivas' price={297}  label='Precio Lanzamiento'/>
-                <Card img='https://elestudiantedigital.com/wp-content/uploads/2019/01/cursos-online-gratuitos-certificados.jpg' onClick={() => {}} title='Networker Digital: Habilidades Disruptivas' price={297}  label='Precio Lanzamiento'/>
+                {
+                    capacitaciones.filter(c => filter == 'all' || c.curso == (filter == 'courses')).map((capacitacion, index) => {
+                        return (
+                            <div key={index} className='min-w-92'>
+                                <Card  img={capacitacion.image} onClick={() => {router.push(`/capacitaciones/${capacitacion.id}`)}} title={capacitacion.name} price={capacitacion.price}  label='Precio Lanzamiento'/>
+                            </div>
+                        )
+                    }
+                    )
+                }
             </section>
         </>
     )
