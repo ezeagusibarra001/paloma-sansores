@@ -74,6 +74,10 @@ export const getById = async (col: string, id: any) => {
   return data.data();
 };
 
+// DELETE ONE BY ID BY COLLECTION
+export const deleteById = async (col: string, id: string) => {
+  await deleteDoc(doc(db, col, id));
+};
 
 // ADD ONE BY COLLECTION
 

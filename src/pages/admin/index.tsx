@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import ItemComponent from "./ItemComponent";
-import { addData, uploadImage } from "@/api/firebase";
+import { addData, deleteById, getAll, uploadImage } from "@/api/firebase";
 
 interface Item {
   name: string;
@@ -16,6 +16,8 @@ export default function Admin() {
   const { user } = useApp();
   const [state, setState] = useState("capacitaciones");
   const [items, setItems] = useState<Item[]>([]);
+  const [allCapacitaciones, setAllCapacitaciones] = useState<any[]>([]);
+  const [eventos, setEventos] = useState<any[]>([]);
 
   const [capacitaciones, setCapacitaciones] = useState<{
     name: string;
@@ -83,9 +85,34 @@ export default function Admin() {
     };
     setCapacitaciones(capacitacion);
   };
+  const getCapacitaciones = async () => {
+    try {
+      const data = await getAll("capacitaciones");
+      setAllCapacitaciones(data);
+    } catch (error) {
+      toast.error("Error al obtener las capacitaciones");
+    }
+  };
+  const getEventos = async () => {
+    try {
+      const data = await getAll("eventos");
+      setEventos(data);
+    } catch (error) {
+      toast.error("Error al obtener las eventos");
+    }
+  };
+
+  useEffect(() => {
+    getCapacitaciones();
+  }, [allCapacitaciones]);
+
+  useEffect(() => {
+    getEventos();
+  }, [eventos]);
 
   const handleSubir = async () => {
     try {
+      toast.loading("Subiendo capacitación");
       if (!capacitaciones)
         return toast.error("Todos los campos son requeridos");
       const url = await uploadImage("capacitaciones", capacitaciones.image);
@@ -95,6 +122,7 @@ export default function Admin() {
         items,
       };
       await addData("capacitaciones", data);
+      toast.dismiss();
       toast.success("Capacitación subida con éxito");
     } catch (error) {
       console.error(error);
@@ -119,11 +147,43 @@ export default function Admin() {
           ))}
         </ul>
       </div>
-
       {/* capacitaciones */}
+      {state === "capacitacion-eliminar" && (
+        <div className="flex-1 p-10">
+          <h2 className="text-2xl mb-6">Capacitaciones Eliminar</h2>
+          <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col gap-4">
+            {allCapacitaciones.map((capacitacion, index) => (
+              <div key={index} className="flex items-center justify-between">
+                <p>{capacitacion.name}</p>
+                <button
+                  onClick={async () => {
+                    toast.promise(
+                      deleteById("capacitaciones", capacitacion.id),
+                      {
+                        loading: "Eliminando capacitación",
+                        success: "Capacitación eliminada con éxito",
+                        error: "Error al eliminar capacitación",
+                      }
+                    );
+                  }}
+                  className="bg-red-500 text-white p-2 rounded-lg"
+                >
+                  Eliminar
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
       {state === "capacitaciones" && (
         <div className="flex-1 p-10">
           <h2 className="text-2xl mb-6">Capacitaciones</h2>
+          <button
+            onClick={() => setState("capacitacion-eliminar")}
+            className="bg-red-500 text-white p-2 rounded-lg mb-6"
+          >
+            Eliminar capacitación
+          </button>
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <form onSubmit={handleSubmit}>
               <div>
@@ -192,9 +252,42 @@ export default function Admin() {
           </div>
         </div>
       )}
+      {state === "eventos-eliminar" && (
+        <div className="flex-1 p-10">
+          <h2 className="text-2xl mb-6">Eventos Eliminar</h2>
+          <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col gap-4">
+            {eventos.map((evento, index) => (
+              <div key={index} className="flex items-center justify-between">
+                <p>{evento.title}</p>
+                <button
+                  onClick={async () => {
+                    toast.promise(
+                      deleteById("eventos", evento.id),
+                      {
+                        loading: "Eliminando evento",
+                        success: "Evento eliminada con éxito",
+                        error: "Error al eliminar evento",
+                      }
+                    );
+                  }}
+                  className="bg-red-500 text-white p-2 rounded-lg"
+                >
+                  Eliminar
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
       {state === "eventos" && (
         <div className="flex-1 p-10">
           <h2 className="text-2xl mb-6">Eventos</h2>
+          <button
+            onClick={() => setState("eventos-eliminar")}
+            className="bg-red-500 text-white p-2 rounded-lg mb-6"
+          >
+            Eliminar evento
+          </button>
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <form onSubmit={handleSubmitEvento}>
               <input

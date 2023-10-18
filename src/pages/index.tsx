@@ -6,10 +6,13 @@ import { useRouter } from "next/router";
 import useStorage from "@/hooks/useStorage";
 import { getAll } from "@/api/firebase";
 import toast from "react-hot-toast";
+import { sendEmail } from "@/api/email";
 
 export default function Home() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const { getItem, setItem } = useStorage();
   const alreadyOpen = getItem("alreadyOpen");
 
@@ -29,6 +32,23 @@ export default function Home() {
       setCapacitaciones(data);
     } catch (error) {
       toast.error("Error al obtener las capacitaciones");
+    }
+  };
+
+  const handleEmail = async () => {
+    setLoading(true);
+    try {
+      const emailRegex = /\S+@\S+\.\S+/;
+      if (!emailRegex.test(email)) {
+        toast.error("Email inválido");
+        return;
+      }
+      await sendEmail(email, "Suscripción a newsletter");
+      toast.success("¡Gracias por suscribirte!");
+    } catch (error) {
+      toast.error("Error al suscribirte");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -138,12 +158,17 @@ export default function Home() {
           </p>
           <div className="flex items-center gap-4">
             <Input
-              onChange={() => console.log("onChange")}
+              onChange={(value) => setEmail(value)}
               placeholder="Déjame tu email"
               bgColor="white"
               type="text"
             />
-            <div className="w-10 h-8 bg-white/30 rounded p-2">
+            <div
+              onClick={handleEmail}
+              className={`w-10 h-8 bg-white/30 rounded p-2 ${
+                loading && "animate-bounce"
+              }`}
+            >
               <Icon name="arrowRight" color="white" />
             </div>
           </div>
