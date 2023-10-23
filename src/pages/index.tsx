@@ -82,21 +82,25 @@ export default function Home() {
             title="Cursos"
             description="Estás a tiempo de cumplir tus sueños, yo se como ayudarte"
             icon={<Icon name="course" color="violet" shade="900" />}
+            href={"/capacitaciones"}
           />
           <NoteCard
             title="Comunidad"
             description="Mantente motivada formando parte de un grupo de personas como tú, que todos los días trabajamos por ser mejores."
             icon={<Icon name="clip" color="violet" shade="900" />}
+            href={"https://t.me/palomasansores"}
           />
           <NoteCard
             title="+ 100 VIDEOS"
             description="Enfocados en programar tu subconsciente"
             icon={<Icon name="play" color="violet" shade="900" />}
+            href={"https://www.youtube.com/@palomasansores"}
           />
           <NoteCard
             title="Herramientas de crecimiento"
             description="Conoce los recursos que te ayudarán en tu proceso"
             icon={<Icon name="stars" color="violet" shade="900" />}
+            href={"https://paloma-sansores-herramientas.myshopify.com/"}
           />
         </div>
       </section>

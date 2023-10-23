@@ -82,23 +82,23 @@ export default function App({ Component, pageProps }: AppProps) {
             social: [
               {
                 name: "telegram",
-                url: "https://www.facebook.com",
+                url: "https://t.me/palomasansores",
               },
               {
                 name: "instagram",
-                url: "https://www.instagram.com",
+                url: "https://www.instagram.com/palomasansores/",
               },
               {
                 name: "youtube",
-                url: "https://www.twitter.com",
+                url: "https://www.youtube.com/@palomasansores",
               },
               {
                 name: "facebook",
-                url: "https://www.instagram.com",
+                url: "https://www.facebook.com/PalomaSansoresOfficial/",
               },
               {
                 name: "tiktok",
-                url: "https://www.twitter.com",
+                url: "https://www.tiktok.com/@palomasansores.cm",
               },
             ],
           }}
