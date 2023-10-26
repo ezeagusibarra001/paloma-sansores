@@ -1,4 +1,5 @@
 import { Button, Icon } from "mdc-ui";
+import Link from "next/link";
 import React from "react";
 
 export default function Wem() {
@@ -29,43 +30,64 @@ export default function Wem() {
             </li>
           </ul>
           <div className="flex gap-4">
-            <Button
-              label="MINED ACADEMY"
-              color="pink"
-              shade="300"
-              onClick={() => {}}
-            />
-            <Button
-              label="MINED TV"
-              color="pink"
-              shade="300"
-              onClick={() => {}}
-            />
+            <Link href="https://mined.world/wem/" target="_blank">
+              <Button
+                label="MINED ACADEMY"
+                color="pink"
+                shade="300"
+                onClick={() => {}}
+              />
+            </Link>
+            <Link
+              href="https://www.youtube.com/watch?v=UedPYs5QviM"
+              target="_blank"
+            >
+              <Button
+                label="MINED TV"
+                color="pink"
+                shade="300"
+                onClick={() => {}}
+              />
+            </Link>
           </div>
         </div>
       </div>
       <section className="flex flex-col my-12 gap-20 bg-pink-300/5 py-20">
-          <div className="flex flex-col gap-4 justify-center items-center">
-            <div className="bg-pink-300 rounded-full w-12 h-12 p-2">
-              <Icon name="school" color="white"/>
-            </div>
-            <h2 className="text-pink-300 font-bold uppercase text-2xl">Clases Completas</h2>
-            <p className="w-1/2 mx-auto text-center text-gray-300">Accede a las clases más completas y fortalece tus habilidades de forma integral.</p>
+        <div className="flex flex-col gap-4 justify-center items-center">
+          <div className="bg-pink-300 rounded-full w-12 h-12 p-2">
+            <Icon name="school" color="white" />
           </div>
-          <div className="flex flex-col gap-4 justify-center items-center">
-            <div className="bg-pink-300 rounded-full w-12 h-12 p-2">
-              <Icon name="women" color="white"/>
-            </div>
-            <h2 className="text-pink-300 font-bold uppercase text-2xl">Por Mujeres</h2>
-            <p className="w-1/2 mx-auto text-center text-gray-300">Aprende con las mejores educadoras de la industria.</p>
+          <h2 className="text-pink-300 font-bold uppercase text-2xl">
+            Clases Completas
+          </h2>
+          <p className="w-1/2 mx-auto text-center text-gray-300">
+            Accede a las clases más completas y fortalece tus habilidades de
+            forma integral.
+          </p>
+        </div>
+        <div className="flex flex-col gap-4 justify-center items-center">
+          <div className="bg-pink-300 rounded-full w-12 h-12 p-2">
+            <Icon name="women" color="white" />
           </div>
-          <div className="flex flex-col gap-4 justify-center items-center">
-            <div className="bg-pink-300 rounded-full w-12 h-12 p-2">
-              <Icon name="copy" color="white"/>
-            </div>
-            <h2 className="text-pink-300 font-bold uppercase text-2xl">Material Online</h2>
-            <p className="w-1/2 mx-auto text-center text-gray-300">Ten a tu disposición todo el material necesario para tu proceso educativo.</p>
+          <h2 className="text-pink-300 font-bold uppercase text-2xl">
+            Por Mujeres
+          </h2>
+          <p className="w-1/2 mx-auto text-center text-gray-300">
+            Aprende con las mejores educadoras de la industria.
+          </p>
+        </div>
+        <div className="flex flex-col gap-4 justify-center items-center">
+          <div className="bg-pink-300 rounded-full w-12 h-12 p-2">
+            <Icon name="copy" color="white" />
           </div>
+          <h2 className="text-pink-300 font-bold uppercase text-2xl">
+            Material Online
+          </h2>
+          <p className="w-1/2 mx-auto text-center text-gray-300">
+            Ten a tu disposición todo el material necesario para tu proceso
+            educativo.
+          </p>
+        </div>
       </section>
     </>
   );

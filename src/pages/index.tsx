@@ -7,6 +7,7 @@ import useStorage from "@/hooks/useStorage";
 import { getAll } from "@/api/firebase";
 import toast from "react-hot-toast";
 import { sendEmail } from "@/api/email";
+import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
@@ -56,6 +57,33 @@ export default function Home() {
     getCapacitaciones();
   }, []);
 
+  const testimonios = [
+    {
+      title: "Daniela Aguilar",
+      text: "Paloma, yo estoy feliz y contenta de aprender de ti, yo personalmente siento que soy capaz de lograr todo, sé que lograré cumplir grandes metas en esta industria. Me sirve mucho llevar a la acción todos tus tips, porque si no avanzo son por las limitaciones inconscientes, pero trabajando se logra totalmente. Gracias, gracias gracias por todo.",
+    },
+    {
+      title: "Jennifer Barrios",
+      text: "Empecé a tener mi vida mas en orden, obvio que aun no se hace automático pero lo voy haciendo. Tengo arreglada mi casa, trabajo mas eficazmente. Mi cocina está diferente mi cama todos los dias ordenada, mi closet. Tiempo con mis hijos, con mi esposo. osea un orden y el rango se dió como magia.",
+    },
+    {
+      title: "Limsy Sanchez Serrano",
+      text: "He sufrido muchos traumas a mi corta edad y gracias a tus clases estoy aprendiendo a soltar y a amarme a mí misma. Gracias a ti he aprendido a perdonar y a construir un futuro mejor. A dedicarme el tiempo que merezco porque siempre estoy luchando por todo: mis estudios, mi trabajo, mi casa. Gracias!",
+    },
+    {
+      title: "Michelle Solas",
+      text: "Pues para mi tus clases me han ayudado a reconocer que soy merecedora e invertir en mi, buscar estar bien primero en mi cuerpo con mi templo, dármelo sin culpas y atraer lo que deseo desde el amor que merezco, además cuando no me siento al 100, me meto a tus clases y mi frecuencia cambia. Gracias.",
+    },
+    {
+      title: "Marcos Reyes",
+      text: "Gracias a este curso de mindset estoy mas feliz agradecido me siento abundante y por ende tengo mucho mas dinero que antes y eh cumplido mucho sueños y me esta acercando a mi riqueza y estamos desbloqueando muchos paradigmas. Tengo autoestima la que había perdido hace mucho tiempo hoy soy mas feliz.",
+    },
+    {
+      title: "Xochitl Guadalupe",
+      text: "Yo estoy comenzando de cero gracias a este programa y a tus mentorías Paloma. Me enseñaste que se puede llegar al éxito siempre que queramos. Y debemos iniciar las veces que sean necesarias para alcanzar nuestras metas. Gracias infinitas a ti.",
+    },
+  ];
+
   return (
     <>
       <section className="flex flex-col items-center justify-center h-[50vh] xl:h-[70vh] bg-banner bg-center bg-cover gap-2">
@@ -69,7 +97,7 @@ export default function Home() {
           <Button
             label="Empieza HOY"
             shade="900"
-            onClick={() => console.log("Empieza HOY")}
+            onClick={() => router.push("/capacitaciones")}
           />
         </div>
       </section>
@@ -117,7 +145,21 @@ export default function Home() {
           />
         </div>
       </section>
-      <section className="md:flex gap-20 justify-center items-center mb-12">
+      <section className="bg-gray-100 pt-20 flex gap-12 flex-col md:flex-row">
+        <div className="flex flex-col gap-4 px-12 md:justify-center md:px-24">
+          <p className="text-sm text-gray">
+            Si buscas emprender con un negocio digital...
+          </p>
+          <h3 className="text-blue-900 font-bold text-2xl w-2/3">
+            Conectate conmigo a través de WhatApp
+          </h3>
+          <Link href="https://wa.me/message/G4OMBUDSVX72E1" target="_blank">
+            <Button shade="900" label="Emprende Conmigo" onClick={() => {}} />
+          </Link>
+        </div>
+        <div className="h-[70vh] w-4/5 mx-auto bg-celular bg-contain bg-no-repeat bg-left-bottom md:w-1/2 md:rounded-2xl md:h-[70vh]"></div>
+      </section>
+      <section className="md:flex md:pt-12 gap-20 justify-center items-center mb-12">
         <div className="h-[70vh] bg-paloma bg-cover bg-top md:w-1/4 md:rounded-2xl md:h-[70vh]"></div>
         <div className="p-12 text-gray md:w-1/3 md:p-0">
           <p className="text-xs mb-4">Paloma Sansores, Coach Millonario</p>
@@ -145,6 +187,18 @@ export default function Home() {
               onClick={() => router.push("sobre-mi")}
             />
           </div>
+        </div>
+      </section>
+      <section className="py-12">
+        <h3 className="text-center text-blue-900 font-medium text-xl">
+          Reseñas y Testimonios
+        </h3>
+        <div className="flex flex-wrap justify-center gap-6 my-8">
+          {
+            testimonios.map((testimonio, index) => (
+              <Testimonios key={index} {...testimonio} />
+            ))
+          }
         </div>
       </section>
       <Modal
@@ -181,3 +235,12 @@ export default function Home() {
     </>
   );
 }
+
+const Testimonios = ({ title, text }: { title: string; text: string }) => {
+  return (
+    <div className="bg-blue/20 rounded-xl mx-8 flex flex-col gap-5 py-6 w-full md:w-1/3 lg:w-1/4">
+      <h2 className="text-blue-900 text-center text-xl">{title}</h2>
+      <p className="text-gray-500 text-center mx-8">{text}</p>
+    </div>
+  );
+};

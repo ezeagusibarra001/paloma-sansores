@@ -22,6 +22,7 @@ module.exports = {
         elipse: "url('/img/elipse.png')",
         wem: "url('/img/wem.png')",
         women: "url('/img/women.png')",
+        celular: "url('/img/celular.png')",
       },
     },
   },

@@ -1,4 +1,5 @@
 import { Button, Icon } from 'mdc-ui'
+import Link from 'next/link'
 import React from 'react'
 
 export default function SobreMi() {
@@ -59,9 +60,9 @@ export default function SobreMi() {
                 <div className='text-white flex flex-col gap-5 md:w-1/2'>
                     <h3 className='text-2xl font-bold'>¡Únete a la comunidad inspiradora en Telegram!</h3>
                     <p>¿Estás buscando un espacio donde puedas conectar con personas que comparten tus mismas metas de crecimiento personal y emprendimiento? </p>
-                    <div>
+                    <Link href="https://www.tiktok.com/@palomasansores.cm" target="_blank">
                         <Button label='¡Únete Ya!' color='white' textColor='violet' weight="bold" onClick={() => { }} />
-                    </div>
+                    </Link>
                 </div>
 
             </section>
