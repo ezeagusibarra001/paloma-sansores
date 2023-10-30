@@ -107,7 +107,7 @@ export default function Home() {
         autoPlay
         loop
         muted
-        poster="https://assets.codepen.io/6093409/river.jpg"
+        // poster="https://assets.codepen.io/6093409/river.jpg"
       >
         <source src="./videos/paloma.mp4" type="video/mp4" />
       </video>
