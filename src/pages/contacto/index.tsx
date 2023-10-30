@@ -89,7 +89,7 @@ export default function Contacto() {
           </div>
         </div>
       </section>
-      <h2 className="text-3xl font-medium my-12 text-center">
+      {/* <h2 className="text-3xl font-medium my-12 text-center">
         Preguntas frecuentes
       </h2>
       <Accordion
@@ -111,7 +111,7 @@ export default function Contacto() {
               "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
           },
         ]}
-      />
+      /> */}
     </>
   );
 }

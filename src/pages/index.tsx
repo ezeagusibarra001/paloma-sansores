@@ -86,7 +86,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="flex flex-col items-center justify-center h-[50vh] xl:h-[70vh] bg-banner bg-center bg-cover gap-2">
+      <section className="absolute w-full h-full flex flex-col items-center justify-center gap-2">
         <h1 className="text-3xl lg:text-5xl xl:text-6xl font-bold text-white">
           Paloma Sansores
         </h1>
@@ -101,6 +101,16 @@ export default function Home() {
           />
         </div>
       </section>
+      <video
+        id="background-video"
+        className="relative -z-50"
+        autoPlay
+        loop
+        muted
+        poster="https://assets.codepen.io/6093409/river.jpg"
+      >
+        <source src="./videos/paloma.mp4" type="video/mp4" />
+      </video>
       <section className="flex flex-col items-center justify-center">
         <p className="text-sm lg:text-xl xl:text-3xl font-bold w-1/2 text-center my-12">
           Es momento de elevar tu conciencia y tus resultados
@@ -194,11 +204,9 @@ export default function Home() {
           Reseñas y Testimonios
         </h3>
         <div className="flex flex-wrap justify-center gap-6 my-8">
-          {
-            testimonios.map((testimonio, index) => (
-              <Testimonios key={index} {...testimonio} />
-            ))
-          }
+          {testimonios.map((testimonio, index) => (
+            <Testimonios key={index} {...testimonio} />
+          ))}
         </div>
       </section>
       <Modal
