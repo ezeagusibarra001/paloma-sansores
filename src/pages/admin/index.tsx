@@ -104,11 +104,13 @@ export default function Admin() {
 
   useEffect(() => {
     getCapacitaciones();
-  }, [allCapacitaciones]);
+    console.log(allCapacitaciones);
+  }, []);
 
   useEffect(() => {
     getEventos();
-  }, [eventos]);
+    console.log(eventos);
+  }, []);
 
   const handleSubir = async () => {
     try {
