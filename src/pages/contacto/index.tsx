@@ -14,7 +14,7 @@ export default function Contacto() {
   const handelSend = async () => {
     setLoading(true);
     await sendEmail(data.email, data.name);
-    toast.success('¡Gracias por suscribirte!')
+    toast.success("¡Gracias por suscribirte!");
     setLoading(false);
   };
 
@@ -89,29 +89,29 @@ export default function Contacto() {
           </div>
         </div>
       </section>
-      {/* <h2 className="text-3xl font-medium my-12 text-center">
+      <h2 className="text-3xl font-medium my-12 text-center">
         Preguntas frecuentes
       </h2>
       <Accordion
         withButton={false}
         items={[
           {
-            title: "Retiro Emprendedor a Tulum ",
+            title: "¿Donde compro los cursos? ",
             description:
-              "¡Bienvenidos al Retiro Emprendedor en Tulum! Este retiro está diseñado para inspirar, empoderar y fortalecer a los emprendedores en su camino hacia el éxito. Únete a nosotros para experimentar una combinación única de aprendizaje, crecimiento personal y conexión con la vibrante energía de Tulum. A lo largo del retiro, participarás en talleres interactivos, sesiones de mentoría, conferencias motivadoras y actividades de networking estratégico. Aprenderás las mejores prácticas para impulsar tu negocio, adquirirás herramientas prácticas para superar desafíos y explorarás nuevas formas de pensar que te ayudarán a alcanzar tus metas emprendedoras. Nuestro equipo de expertos y mentores estará a tu disposición para proporcionarte orientación personalizada y apoyo estratégico. Te ayudarán a desarrollar un plan de negocios sólido, a potenciar tus habilidades de liderazgo y a establecer conexiones valiosas con otros emprendedores.",
+              "Puedes adquirir Networker Digital en el link que te redirige la sección al curso. Todos los demás cursos los puedes adquirir hablando conmigo directo, envíame un mensaje por WhatsApp y comienza hoy tu desarrollo.",
           },
           {
-            title: "Título 2",
+            title: "¿Cómo puedo ganar dinero contigo?",
             description:
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+              "Hoy en día uno de los mercados más fuertes es el de los cursos online, por lo tanto he creado WEM, un espacio donde puedes educarte y crecer en todas las áreas de tu vida: Vínculos Afectivos, Mindset, Ejercicio, Yoga, Glamour, sexologia y mucho más… y ganar dinero por recomendarlos. Si quieres comenzar; envíame un mensaje por WhatsApp.",
           },
           {
-            title: "Título 3",
+            title: "¿Cómo son las mentorias?",
             description:
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+              "Las mentorías son online y duran 50 minutos, se trata de una sesión en la cual vas a poder charlar conmigo acerca de eso que sientes que te está deteniendo; o para que puedas recibir una compañía y consejos en tu proceso.",
           },
         ]}
-      /> */}
+      />
     </>
   );
 }
