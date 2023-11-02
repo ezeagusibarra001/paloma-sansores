@@ -1,29 +1,12 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import { Button, Card } from 'mdc-ui'
-import { getAll } from '@/api/firebase'
-import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
+import { useApp } from '@/context/AppStore'
 
 export default function Capacitaciones() {
     const router = useRouter()
     const [filter, setFilter] = useState<string>('all')
-    const [capacitaciones, setCapacitaciones] = useState<any[]>([])
-
-    const getCapacitaciones = async() => {
-        try {
-            const data = await getAll('capacitaciones')
-            console.log(data)
-            setCapacitaciones(data)
-        } catch (error) {
-            toast.error('Error al obtener las capacitaciones')
-        }
-    }
-
-    useEffect(() => {
-        getCapacitaciones()
-    }
-    , [])
-
+    const { capacitaciones } = useApp()
     return (
         <>
             <section className='h-[70vh] flex flex-col gap-32 justify-center items-center bg-bannerSobreMi bg-cover bg-top'>

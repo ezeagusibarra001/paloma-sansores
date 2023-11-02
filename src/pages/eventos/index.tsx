@@ -1,13 +1,13 @@
 import { sendEmail } from "@/api/email";
-import { getAll } from "@/api/firebase";
 import Accordion from "@/components/common/Accordion";
+import { useApp } from "@/context/AppStore";
 import { Button, Input } from "mdc-ui";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 export default function Eventos() {
   const [loading, setLoading] = useState(false);
-  const [eventos, setEventos] = useState<any[]>([]);
+  const { eventos } = useApp();
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -19,17 +19,6 @@ export default function Eventos() {
     setLoading(false);
   };
 
-  useEffect(() => {
-    const getEventos = async () => {
-      try {
-        const data = await getAll("eventos");
-        setEventos(data);
-      } catch (error) {
-        toast.error("Ocurrió un error al cargar los eventos");
-      }
-    };
-    getEventos();
-  }, []);
   return (
     <>
       <section className="flex flex-col gap-4 py-20 bg-blue/20 bg-no-repeat justify-center items-center bg-elipse bg-cover bg-left lg:flex-row lg:justify-evenly">

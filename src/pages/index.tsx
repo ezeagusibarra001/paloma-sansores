@@ -4,10 +4,10 @@ import NoteCard from "@/components/home/NoteCard";
 import CardCourse from "@/components/home/CardCourse";
 import { useRouter } from "next/router";
 import useStorage from "@/hooks/useStorage";
-import { getAll } from "@/api/firebase";
 import toast from "react-hot-toast";
 import { sendEmail } from "@/api/email";
 import Link from "next/link";
+import { useApp } from "@/context/AppStore";
 
 export default function Home() {
   const router = useRouter();
@@ -17,24 +17,14 @@ export default function Home() {
   const { getItem, setItem } = useStorage();
   const alreadyOpen = getItem("alreadyOpen");
 
+  const {capacitaciones} = useApp();
+
   useEffect(() => {
     if (alreadyOpen !== "true") {
       setOpen(true);
       setItem("alreadyOpen", "true");
     }
   }, []);
-
-  const [capacitaciones, setCapacitaciones] = useState<any[]>([]);
-
-  const getCapacitaciones = async () => {
-    try {
-      const data = await getAll("capacitaciones");
-      console.log(data);
-      setCapacitaciones(data);
-    } catch (error) {
-      toast.error("Error al obtener las capacitaciones");
-    }
-  };
 
   const handleEmail = async () => {
     setLoading(true);
@@ -52,10 +42,6 @@ export default function Home() {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    getCapacitaciones();
-  }, []);
 
   const testimonios = [
     {

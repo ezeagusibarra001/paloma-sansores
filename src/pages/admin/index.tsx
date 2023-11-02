@@ -1,9 +1,9 @@
 import { useApp } from "@/context/AppStore";
 import { useRouter } from "next/router";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import ItemComponent from "./ItemComponent";
-import { addData, deleteById, getAll, uploadImage } from "@/api/firebase";
+import { addData, deleteById, uploadImage } from "@/api/firebase";
 
 interface Item {
   name: string;
@@ -13,11 +13,9 @@ interface Item {
 const admin = ["capacitaciones", "eventos"];
 
 export default function Admin() {
-  const { user } = useApp();
+  const { user, capacitaciones: allCapacitaciones, eventos, getCapacitaciones, getEventos } = useApp();
   const [state, setState] = useState("capacitaciones");
   const [items, setItems] = useState<Item[]>([]);
-  const [allCapacitaciones, setAllCapacitaciones] = useState<any[]>([]);
-  const [eventos, setEventos] = useState<any[]>([]);
 
   const [capacitaciones, setCapacitaciones] = useState<{
     name: string;
@@ -41,7 +39,7 @@ export default function Admin() {
     if (!user) router.push("/login");
   }, [user]);
 
-  const handleSubmitEvento = (e: any) => {
+  const handleSubmitEvento = async (e: any) => {
     e.preventDefault();
     const { date, link, description, title } = e.currentTarget;
     if (!date.value || !link.value || !title.value || !description.value)
@@ -53,7 +51,10 @@ export default function Admin() {
       title: title.value,
     };
     try {
-      addData("eventos", evento);
+      toast.loading("Subiendo evento");
+      await addData("eventos", evento);
+      await getEventos();
+      toast.dismiss();
       toast.success("Evento subido con éxito");
     } catch (error) {
       console.error(error);
@@ -85,32 +86,6 @@ export default function Admin() {
     };
     setCapacitaciones(capacitacion);
   };
-  const getCapacitaciones = async () => {
-    try {
-      const data = await getAll("capacitaciones");
-      setAllCapacitaciones(data);
-    } catch (error) {
-      toast.error("Error al obtener las capacitaciones");
-    }
-  };
-  const getEventos = async () => {
-    try {
-      const data = await getAll("eventos");
-      setEventos(data);
-    } catch (error) {
-      toast.error("Error al obtener las eventos");
-    }
-  };
-
-  useEffect(() => {
-    getCapacitaciones();
-    console.log(allCapacitaciones);
-  }, []);
-
-  useEffect(() => {
-    getEventos();
-    console.log(eventos);
-  }, []);
 
   const handleSubir = async () => {
     try {
@@ -124,6 +99,7 @@ export default function Admin() {
         items,
       };
       await addData("capacitaciones", data);
+      await getCapacitaciones();
       toast.dismiss();
       toast.success("Capacitación subida con éxito");
     } catch (error) {
