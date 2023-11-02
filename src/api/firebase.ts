@@ -1,11 +1,8 @@
 // Import the functions you need from the SDKs you need
 import {
   getAuth,
-  setPersistence,
   signInWithEmailAndPassword,
-  browserSessionPersistence,
   onAuthStateChanged,
-  signOut,
 } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import {
@@ -16,7 +13,6 @@ import {
   doc,
   addDoc,
   getDoc,
-  updateDoc
 } from "firebase/firestore";
 import {
   getStorage,
@@ -26,13 +22,14 @@ import {
   deleteObject,
   StorageReference,
 } from "firebase/storage";
+
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
   authDomain: "paloma-c8fa9.firebaseapp.com",
   projectId: "paloma-c8fa9",
   storageBucket: "paloma-c8fa9.appspot.com",
   messagingSenderId: "1073293763150",
-  appId: process.env.NEXT_PUBLIC_APP_ID
+  appId: process.env.NEXT_PUBLIC_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
@@ -42,9 +39,13 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 
 export const login = async (email: string, password: string) => {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-    return user;
+  const userCredential = await signInWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+  const user = userCredential.user;
+  return user;
 };
 
 export const authState = (callback: (arg0: any) => void) => {
@@ -119,5 +120,3 @@ export const deleteImage = async (url: string | undefined) => {
 };
 
 export { auth };
-
-

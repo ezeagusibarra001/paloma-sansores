@@ -104,6 +104,7 @@ export default function Admin() {
       toast.success("Capacitación subida con éxito");
     } catch (error) {
       console.error(error);
+      toast.dismiss();
       toast.error("Error al subir capacitación");
     }
   };
