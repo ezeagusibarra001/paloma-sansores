@@ -143,13 +143,12 @@ export default function Admin() {
                 <button
                   onClick={async () => {
                     confirm("Estas seguro de eliminar esta capacitación?") &&
-                      toast.promise(
-                        deleteById("capacitaciones", capacitacion.id),
-                        {
-                          loading: "Eliminando capacitación",
-                          success: "Capacitación eliminada con éxito",
-                          error: "Error al eliminar capacitación",
-                        }
+                      (
+                        toast.loading("Eliminando capacitación"),
+                        await deleteById("capacitaciones", capacitacion.id),
+                        await getCapacitaciones(),
+                        toast.dismiss(),
+                        toast.success("Capacitación eliminada con éxito")
                       );
                   }}
                   className="bg-red-500 text-white p-2 rounded-lg"
@@ -274,11 +273,11 @@ export default function Admin() {
                 <button
                   onClick={async () => {
                     confirm("Estas seguro de eliminar este evento?") && (
-                      toast.promise(deleteById("eventos", evento.id), {
-                        loading: "Eliminando evento",
-                        success: "Evento eliminada con éxito",
-                        error: "Error al eliminar evento",
-                      })
+                      toast.loading("Eliminando evento"),
+                      await deleteById("eventos", evento.id),
+                      await getEventos(),
+                      toast.dismiss(),
+                      toast.success("Evento eliminada con éxito")
                     )
                   }}
                   className="bg-red-500 text-white p-2 rounded-lg"
@@ -290,6 +289,29 @@ export default function Admin() {
           </div>
         </div>
       )}
+
+      {state === "eventos-editar" && (
+        <div className="flex-1 p-10">
+          <h2 className="text-2xl mb-6">Eventos Editar</h2>
+          <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col gap-4">
+            {eventos.map((evento, index) => (
+              <div key={index} className="flex items-center justify-between">
+                <p>{evento.title}</p>
+                <button
+                  onClick={() => {
+                    router.push(`/admin/eventos/${evento.id}`);
+                  }}
+                  className="bg-green-500 text-white p-2 rounded-lg"
+                >
+                  Editar
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+
       {state === "eventos" && (
         <div className="flex-1 p-10">
           <h2 className="text-2xl mb-6">Eventos</h2>
@@ -339,7 +361,7 @@ export default function Admin() {
                 className="border p-2 mb-4 w-full"
               />
               <button className="bg-blue-500 text-white p-2 rounded-lg">
-                Siguiente
+                Subir evento
               </button>
             </form>
           </div>

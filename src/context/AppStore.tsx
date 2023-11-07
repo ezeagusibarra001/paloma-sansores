@@ -20,6 +20,7 @@ interface ContextInterface {
   eventos: any[];
   getEventos: () => void;
   getCapacitacion: (id: string) => Promise<any | null>;
+  getEvento: (id: string) => Promise<any | null>;
 }
 
 const AppContext = createContext<ContextInterface>({} as ContextInterface);
@@ -67,6 +68,16 @@ const AppProvider = ({ children }: contextProps) => {
     }
   }
 
+  const getEvento = async (id: string) => {
+    try {
+      const data = await getById("eventos", id);
+      return data
+    } catch (error) {
+      toast.error("Error al obtener las capacitaciones");
+      return null
+    }
+  }
+
   useEffect(() => {
     if (!user && router.pathname.includes("admin")) router.push("/login");
     else if (user && router.pathname.includes("login")) router.push("/admin");
@@ -81,7 +92,8 @@ const AppProvider = ({ children }: contextProps) => {
         getCapacitaciones,
         eventos,
         getEventos,
-        getCapacitacion
+        getCapacitacion,
+        getEvento
       }}
     >
       {children}
