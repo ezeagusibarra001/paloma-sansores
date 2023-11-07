@@ -273,11 +273,13 @@ export default function Admin() {
                 <p>{evento.title}</p>
                 <button
                   onClick={async () => {
-                    toast.promise(deleteById("eventos", evento.id), {
-                      loading: "Eliminando evento",
-                      success: "Evento eliminada con éxito",
-                      error: "Error al eliminar evento",
-                    });
+                    confirm("Estas seguro de eliminar este evento?") && (
+                      toast.promise(deleteById("eventos", evento.id), {
+                        loading: "Eliminando evento",
+                        success: "Evento eliminada con éxito",
+                        error: "Error al eliminar evento",
+                      })
+                    )
                   }}
                   className="bg-red-500 text-white p-2 rounded-lg"
                 >
@@ -296,6 +298,12 @@ export default function Admin() {
             className="bg-red-500 text-white p-2 rounded-lg mb-6"
           >
             Eliminar evento
+          </button>
+          <button
+            onClick={() => setState("eventos-editar")}
+            className="ml-4 bg-green-500 text-white p-2 rounded-lg mb-6"
+          >
+            Editar evento
           </button>
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <form onSubmit={handleSubmitEvento}>
