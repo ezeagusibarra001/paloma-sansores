@@ -56,8 +56,8 @@ const ItemComponent: React.FC<Props> = ({ items, setItems }) => {
           />
           <ul>
             {item?.bullets?.map((bullet, bulletIndex) => (
-              <div className="flex gap-2">
-                <li key={bulletIndex}>{bullet}</li>
+              <div key={bulletIndex} className="flex gap-2">
+                <li >{bullet}</li>
                 <button
                   className="bg-red-500 text-white px-4 py-2 rounded"
                   onClick={() => {
