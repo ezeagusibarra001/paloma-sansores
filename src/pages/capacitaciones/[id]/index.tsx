@@ -39,10 +39,10 @@ export default function Capacitacion() {
         style={{ backgroundImage: `url(${capacitacion.image})` }}
         className="h-[50vh] lg:h-[80vh] flex flex-col gap-32 justify-center items-center bg-cover bg-center"
       >
-        <div>
+        {/* <div>
           <p className="font-bold text-3xl text-center">{parte1}</p>
           <p className="text-2xl text-center">{parte2}</p>
-        </div>
+        </div> */}
       </section>
       <section className="my-12 px-12 2xl:w-4/5 2xl:mx-auto flex flex-col gap-4 lg:flex-row lg:gap-16">
         <div className="flex flex-col gap-4 lg:w-1/2">

@@ -13,6 +13,7 @@ import {
   doc,
   addDoc,
   getDoc,
+  updateDoc
 } from "firebase/firestore";
 import {
   getStorage,
@@ -118,5 +119,10 @@ export const deleteImage = async (url: string | undefined) => {
     console.error(error);
   }
 };
+
+export const updateByColAndId = async (col: string, id: string, data: any) => {
+  const docRef = doc(db, col, id);
+  await updateDoc(docRef, data);
+}
 
 export { auth };

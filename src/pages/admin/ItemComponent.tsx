@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface Item {
   name: string;
@@ -11,8 +11,8 @@ interface Props {
 }
 
 const ItemComponent: React.FC<Props> = ({ items, setItems }) => {
-  const [itemName, setItemName] = useState<string>('');
-  const [bulletText, setBulletText] = useState<string>('');
+  const [itemName, setItemName] = useState<string>("");
+  const [bulletText, setBulletText] = useState<string>("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setItemName(e.target.value);
@@ -23,19 +23,19 @@ const ItemComponent: React.FC<Props> = ({ items, setItems }) => {
   };
 
   const handleAddItem = () => {
-    if (itemName.trim() !== '') {
+    if (itemName.trim() !== "") {
       const newItem: Item = { name: itemName, bullets: [] };
       setItems([...items, newItem]);
-      setItemName('');
+      setItemName("");
     }
   };
 
   const handleAddBullet = (index: number) => {
-    if (bulletText.trim() !== '') {
+    if (bulletText.trim() !== "") {
       const updatedItems = [...items];
       updatedItems[index].bullets.push(bulletText);
       setItems(updatedItems);
-      setBulletText('');
+      setBulletText("");
     }
   };
 
@@ -43,10 +43,32 @@ const ItemComponent: React.FC<Props> = ({ items, setItems }) => {
     <div>
       {items?.map((item, index) => (
         <div key={index} className="mb-4">
-          <p className="font-bold">{item.name}</p>
+          <input  
+            type="text"
+            className="border rounded p-2 mb-2"
+            placeholder="Nombre del item"
+            value={item.name}
+            onChange={(e) => {
+              const updatedItems = [...items];
+              updatedItems[index].name = e.target.value;
+              setItems(updatedItems);
+            }}
+          />
           <ul>
             {item?.bullets?.map((bullet, bulletIndex) => (
-              <li key={bulletIndex}>{bullet}</li>
+              <div className="flex gap-2">
+                <li key={bulletIndex}>{bullet}</li>
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded"
+                  onClick={() => {
+                    const updatedItems = [...items];
+                    updatedItems[index].bullets.splice(bulletIndex, 1);
+                    setItems(updatedItems);
+                  }}
+                >
+                  Eliminar
+                </button>
+              </div>
             ))}
           </ul>
           <input
@@ -72,7 +94,10 @@ const ItemComponent: React.FC<Props> = ({ items, setItems }) => {
         value={itemName}
         onChange={handleInputChange}
       />
-      <button className="bg-green-500 text-white px-4 py-2 rounded" onClick={handleAddItem}>
+      <button
+        className="bg-green-500 text-white px-4 py-2 rounded"
+        onClick={handleAddItem}
+      >
         Agregar Item
       </button>
     </div>

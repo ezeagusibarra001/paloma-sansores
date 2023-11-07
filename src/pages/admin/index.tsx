@@ -10,10 +10,16 @@ interface Item {
   bullets: string[];
 }
 
-const admin = ["capacitaciones", "eventos"];
+export const admin = ["capacitaciones", "eventos"];
 
 export default function Admin() {
-  const { user, capacitaciones: allCapacitaciones, eventos, getCapacitaciones, getEventos } = useApp();
+  const {
+    user,
+    capacitaciones: allCapacitaciones,
+    eventos,
+    getCapacitaciones,
+    getEventos,
+  } = useApp();
   const [state, setState] = useState("capacitaciones");
   const [items, setItems] = useState<Item[]>([]);
 
@@ -136,18 +142,39 @@ export default function Admin() {
                 <p>{capacitacion.name}</p>
                 <button
                   onClick={async () => {
-                    toast.promise(
-                      deleteById("capacitaciones", capacitacion.id),
-                      {
-                        loading: "Eliminando capacitación",
-                        success: "Capacitación eliminada con éxito",
-                        error: "Error al eliminar capacitación",
-                      }
-                    );
+                    confirm("Estas seguro de eliminar esta capacitación?") &&
+                      toast.promise(
+                        deleteById("capacitaciones", capacitacion.id),
+                        {
+                          loading: "Eliminando capacitación",
+                          success: "Capacitación eliminada con éxito",
+                          error: "Error al eliminar capacitación",
+                        }
+                      );
                   }}
                   className="bg-red-500 text-white p-2 rounded-lg"
                 >
                   Eliminar
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      {state === "capacitacion-editar" && (
+        <div className="flex-1 p-10">
+          <h2 className="text-2xl mb-6">Capacitaciones Editar</h2>
+          <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col gap-4">
+            {allCapacitaciones.map((capacitacion, index) => (
+              <div key={index} className="flex items-center justify-between">
+                <p>{capacitacion.name}</p>
+                <button
+                  onClick={() => {
+                    router.push(`/admin/editar/${capacitacion.id}`);
+                  }}
+                  className="bg-green-500 text-white p-2 rounded-lg"
+                >
+                  Editar
                 </button>
               </div>
             ))}
@@ -162,6 +189,12 @@ export default function Admin() {
             className="bg-red-500 text-white p-2 rounded-lg mb-6"
           >
             Eliminar capacitación
+          </button>
+          <button
+            onClick={() => setState("capacitacion-editar")}
+            className="ml-4 bg-green-500 text-white p-2 rounded-lg mb-6"
+          >
+            Editar capacitación
           </button>
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <form onSubmit={handleSubmit}>
@@ -240,14 +273,11 @@ export default function Admin() {
                 <p>{evento.title}</p>
                 <button
                   onClick={async () => {
-                    toast.promise(
-                      deleteById("eventos", evento.id),
-                      {
-                        loading: "Eliminando evento",
-                        success: "Evento eliminada con éxito",
-                        error: "Error al eliminar evento",
-                      }
-                    );
+                    toast.promise(deleteById("eventos", evento.id), {
+                      loading: "Eliminando evento",
+                      success: "Evento eliminada con éxito",
+                      error: "Error al eliminar evento",
+                    });
                   }}
                   className="bg-red-500 text-white p-2 rounded-lg"
                 >

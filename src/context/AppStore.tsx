@@ -1,4 +1,4 @@
-import { authState, getAll } from "@/api/firebase";
+import { authState, getAll, getById } from "@/api/firebase";
 import { useRouter } from "next/router";
 import {
   createContext,
@@ -19,6 +19,7 @@ interface ContextInterface {
   getCapacitaciones: () => void;
   eventos: any[];
   getEventos: () => void;
+  getCapacitacion: (id: string) => Promise<any | null>;
 }
 
 const AppContext = createContext<ContextInterface>({} as ContextInterface);
@@ -56,6 +57,16 @@ const AppProvider = ({ children }: contextProps) => {
     }
   };
 
+  const getCapacitacion = async (id: string) => {
+    try {
+      const data = await getById("capacitaciones", id);
+      return data
+    } catch (error) {
+      toast.error("Error al obtener las capacitaciones");
+      return null
+    }
+  }
+
   useEffect(() => {
     if (!user && router.pathname.includes("admin")) router.push("/login");
     else if (user && router.pathname.includes("login")) router.push("/admin");
@@ -70,6 +81,7 @@ const AppProvider = ({ children }: contextProps) => {
         getCapacitaciones,
         eventos,
         getEventos,
+        getCapacitacion
       }}
     >
       {children}
