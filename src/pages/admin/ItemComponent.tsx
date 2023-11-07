@@ -42,7 +42,20 @@ const ItemComponent: React.FC<Props> = ({ items, setItems }) => {
   return (
     <div>
       {items?.map((item, index) => (
-        <div key={index} className="mb-4">
+        <div key={index} className="mb-4 relative flex flex-col gap-4 border border-gray p-4 rounded-xl">
+          <div>
+            <button
+              className="absolute right-4 top-4 bg-red-500 text-white px-2 py-1 rounded"
+              onClick={() => {
+                const updatedItems = [...items];
+                updatedItems.splice(index, 1);
+                setItems(updatedItems);
+              }}
+            >
+              Eliminar Item Card
+            </button>
+          </div>
+          <label className="font-semibold">Nombre del item</label>
           <input  
             type="text"
             className="border rounded p-2 mb-2"
@@ -56,10 +69,10 @@ const ItemComponent: React.FC<Props> = ({ items, setItems }) => {
           />
           <ul>
             {item?.bullets?.map((bullet, bulletIndex) => (
-              <div key={bulletIndex} className="flex gap-2">
-                <li >{bullet}</li>
+              <div key={bulletIndex} className="flex gap-2 my-4">
+                <span >{bullet}</span>
                 <button
-                  className="bg-red-500 text-white px-4 py-2 rounded"
+                  className="bg-red-500 text-white px-2 py-1 rounded"
                   onClick={() => {
                     const updatedItems = [...items];
                     updatedItems[index].bullets.splice(bulletIndex, 1);

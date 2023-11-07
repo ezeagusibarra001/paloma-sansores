@@ -251,7 +251,7 @@ export default function Admin() {
             </form>
             {capacitaciones.image && (
               <div className="rounded-lg shadow-lg p-4 my-12">
-                <h3>Cards</h3>
+                <h3 className="my-4">Cards</h3>
                 <ItemComponent items={items} setItems={setItems} />
                 <button
                   onClick={handleSubir}
