@@ -3,6 +3,15 @@ import Link from "next/link";
 import React from "react";
 
 export default function Wem() {
+  const logos = [
+    "glamour",
+    "marketing",
+    "vinculos",
+    "psicologia",
+    "sexologia",
+    "mindset",
+    "wellness",
+  ];
   return (
     <>
       <section className="flex flex-col items-center justify-center h-[50vh] xl:h-[70vh] bg-wem bg-center bg-cover gap-2 "></section>
@@ -87,6 +96,22 @@ export default function Wem() {
             Ten a tu disposición todo el material necesario para tu proceso
             educativo.
           </p>
+        </div>
+      </section>
+      <section className="bg-pink-300/70 py-12 text-center">
+        <h3 className="text-white text-2xl font-semibold">
+          Descubre todo lo aprenderás en las academias de WEM
+        </h3>
+        <div className="flex flex-wrap px-8 justify-center gap-12 my-12">
+          {logos.map((logo, index) => (
+            <div
+              key={index}
+              style={{
+                backgroundImage: `url(/img/wem/${logo}.png)`,
+              }}
+              className={`h-28 w-52 bg-contain bg-no-repeat bg-center rounded-3xl`}
+            ></div>
+          ))}
         </div>
       </section>
     </>
