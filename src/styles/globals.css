@@ -119,3 +119,10 @@ li {
   z-index: -1;
   pointer-events: none;
 }
+
+
+@media (max-width: 768px) {
+ #background-video {
+    height: 50vh;
+  }
+}

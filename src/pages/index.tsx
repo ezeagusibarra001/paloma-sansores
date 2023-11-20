@@ -72,7 +72,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="absolute w-full h-full flex flex-col items-center justify-center gap-2">
+      <section className="absolute w-full h-[50vh] md:h-full flex flex-col items-center justify-center gap-2">
         <h1 className="text-3xl lg:text-5xl xl:text-6xl font-bold text-white">
           Paloma Sansores
         </h1>
@@ -82,7 +82,8 @@ export default function Home() {
         <div className="mt-6">
           <Button
             label="Empieza HOY"
-            shade="900"
+            color="white"
+            textColor="blue"
             onClick={() => router.push("/capacitaciones")}
           />
         </div>
@@ -93,7 +94,7 @@ export default function Home() {
         autoPlay
         loop
         muted
-        poster="./img/banner.png"
+        poster="./img/imagen.png"
       >
         <source src="./videos/paloma.mp4" type="video/mp4" />
       </video>
