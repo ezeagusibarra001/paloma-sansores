@@ -19,7 +19,7 @@ export default function CardCourse(course: CourseProps) {
           style={{
             backgroundImage: `url(${course.image})`,
           }}
-          className={`h-[50vh] bg-cover bg-center rounded-3xl`}
+          className={`h-[30vh] bg-contain bg-no-repeat md:h-[50vh] md:bg-cover bg-center rounded-3xl`}
         ></div>
         <div className="flex flex-col justify-center items-center gap-5 my-5">
           <h1 className="text-center text-blue-900 font-medium text-xl w-1/2">
