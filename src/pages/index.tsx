@@ -17,7 +17,7 @@ export default function Home() {
   const { getItem, setItem } = useStorage();
   const alreadyOpen = getItem("alreadyOpen");
 
-  const {capacitaciones} = useApp();
+  const { capacitaciones } = useApp();
 
   useEffect(() => {
     if (alreadyOpen !== "true") {
@@ -73,19 +73,27 @@ export default function Home() {
   return (
     <>
       <section className="absolute w-full h-[50vh] md:h-full flex flex-col items-center justify-center gap-2">
-        <h1 className="text-3xl lg:text-5xl xl:text-6xl font-bold text-white">
-          Paloma Sansores
-        </h1>
-        <p className="text-lg lg:text-2xl xl:text-4xl font-light text-white w-2/3 text-center">
-          Si estás aquí es una señal para cambiar tu vida{" "}
-        </p>
-        <div className="mt-6">
-          <Button
-            label="Empieza HOY"
-            color="white"
-            textColor="blue"
-            onClick={() => router.push("/capacitaciones")}
-          />
+        <div className="w-[70vw] ml-auto flex justify-center flex-col items-center text-center md:w-full">
+          <h1 className="text-3xl lg:text-5xl xl:text-6xl font-bold text-white">
+            Paloma Sansores
+          </h1>
+          <p
+            style={{
+              // @ts-ignore
+              textWrap: "balance",
+            }}
+            className="text-sm md:text-lg lg:text-2xl xl:text-4xl font-light text-white lg:w-2/3 text-center"
+          >
+            Si estás aquí es una señal para cambiar tu vida{" "}
+          </p>
+          <div className="mt-6">
+            <Button
+              label="Empieza HOY"
+              color="white"
+              textColor="blue"
+              onClick={() => router.push("/capacitaciones")}
+            />
+          </div>
         </div>
       </section>
       <video
