@@ -93,7 +93,15 @@ function Editar() {
         <h2 className="text-2xl mb-6">Editar capacitaciones</h2>
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <div>
-            <input checked={course.curso} type="checkbox" name="curso" />
+            <input
+              onChange={(e) => {
+                setCourse((prev) => ({
+                  ...prev,
+                  curso: e.target.checked,
+                }));
+              }}
+              className="mr-2"
+            checked={course.curso} type="checkbox" name="curso" />
             <label htmlFor="scales">Es un curso?</label>
           </div>
           <input
